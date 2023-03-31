@@ -26,11 +26,15 @@
               controller.close();
               return;
             }
-            // v1.0
-            // h3.innerHTML += textDecoder.decode(value)
+
             // 模拟操作->替换
+            // v1.0 not
+            // h3.innerHTML += textDecoder.decode(value)
+            // v2.0 work
             const text = document.createTextNode(textDecoder.decode(value))
             h3.appendChild(text)
+            // v3.0 not
+            // h3.innerText += textDecoder.decode(value)
             push();
           }
           push();
