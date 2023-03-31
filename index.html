@@ -9,13 +9,13 @@
 </head>
 
 <body>
+  <button onclick="fff()">点击触发</button>
   <h3>测试：</h3>
 </body>
 <script>
-  const h2 = document.querySelector('h3')
+  const h3 = document.querySelector('h3')
   const fff = () => {
     const textDecoder = new TextDecoder();
-    h2.innerHTML = ''
     fetch('http://127.0.0.1:3002').then(res => {
       const reader = res.body.getReader()
       new ReadableStream({
@@ -26,8 +26,11 @@
               controller.close();
               return;
             }
+            // v1.0
+            // h3.innerHTML += textDecoder.decode(value)
+            // 模拟操作->替换
             const text = document.createTextNode(textDecoder.decode(value))
-            h2.appendChild(text)
+            h3.appendChild(text)
             push();
           }
           push();
