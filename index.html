@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js"></script>
 </head>
 
 <body>
@@ -13,6 +14,7 @@
   <h3>测试：</h3>
 </body>
 <script>
+  const md = window.markdownit();
   const h3 = document.querySelector('h3')
   const fff = () => {
     const textDecoder = new TextDecoder();
@@ -30,12 +32,22 @@
             // 模拟操作->替换
             // v1.0 not
             // h3.innerHTML += textDecoder.decode(value)
-            // v2.0 work
-            const text = document.createTextNode(textDecoder.decode(value))
-            h3.appendChild(text)
-            // v3.0 not
+            // v2.0 not
             // h3.innerText += textDecoder.decode(value)
-            push();
+            // v3.0 work
+            // const text = document.createTextNode(textDecoder.decode(value))
+            // h3.appendChild(text)
+            // v4.0 try markdown
+            const decodedValue = textDecoder.decode(value);
+            // 将解码后的文本逐个字符地添加到容器中
+            for (let i = 0; i < decodedValue.length; i++) {
+              setTimeout(() => {
+                h3.appendChild(document.createTextNode(decodedValue[i]))
+              }, 10 * (i + 1));
+            }
+
+            // 延时并再次调用push方法，实现延迟加载
+            setTimeout(push, 1000);
           }
           push();
         }
