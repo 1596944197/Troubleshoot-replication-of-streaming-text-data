@@ -1,0 +1,1146 @@
+<h1>欢迎使用 <code>Arya</code> 在线 Markdown 编辑器</h1>
+<p><a href="https://markdown.lovejade.cn/?utm_source=markdown.lovejade.cn">Arya</a>，是一款基于 <code>Vue</code>、<code>Vditor</code>，为未来而构建的在线 Markdown 编辑器；轻量且强大：内置粘贴 HTML 自动转换为 Markdown，支持流程图、甘特图、时序图、任务列表，可导出携带样式的图片、PDF、微信公众号特制的 HTML 等等。</p>
+<hr>
+<h2>如何使用</h2>
+<p><strong>微注</strong>：清空目前这份默认文档，即处于可使用态。<a href="https://markdown.lovejade.cn/?utm_source=markdown.lovejade.cn">Arya</a> 另一大优点在于：编辑内容只会在您本地进行保存，不会上传您的数据至服务器，<strong>绝不窥测用户个人隐私，可放心使用</strong>；Github 源码：<a href="https://github.com/nicejade/markdown-online-editor">markdown-online-editor</a>，部分功能仍在开发🚧，敬请期待。</p>
+<p>默认为<a href="https://hacpai.com/article/1577370404903?utm_source=github.com">所见即所得</a>模式，可通过 <code>⌘-⇧-M</code>（<code>Ctrl-⇧-M</code>）进行切换；或通过以下方式：</p>
+<ul>
+<li>所见即所得：<code>⌘-⌥-7</code>（<code>Ctrl-alt-7</code>）；</li>
+<li>即时渲染：<code>⌘-⌥-8</code>（<code>Ctrl-alt-8</code>）；</li>
+<li>分屏渲染：<code>⌘-⌥-9</code>（<code>Ctrl-alt-9</code>）；</li>
+</ul>
+<h3>PPT 预览</h3>
+<p>如果您用作 <code>PPT</code> 预览（入口在<code>设置</code>中），需要注意，这里暂还不能支持各种图表的渲染；您可以使用 <code>---</code> 来定义水平方向上幻灯片，用 <code>--</code> 来定义垂直幻灯片；更多设定可以参见 <a href="https://github.com/hakimel/reveal.js#table-of-contents">RevealJs 文档</a>。</p>
+<hr>
+<h2>什么是 Markdown</h2>
+<p><a href="https://nicelinks.site/tags/Markdown/?utm_source=markdown.lovejade.cn">Markdown</a> 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号，以最小的输入代价，生成极富表现力的文档：譬如您正在阅读的这份文档。它使用简单的符号标记不同的标题，分割不同的段落，<strong>粗体</strong>、<em>斜体</em> 或者<a href="https://vue-cli3.lovejade.cn/explore/">超文本链接</a>，更棒的是，它还可以：</p>
+<hr>
+<h3>1. 制作待办事宜 <code>Todo</code> 列表</h3>
+<ul>
+<li>[x] 🎉 通常 <code>Markdown</code> 解析器自带的基本功能；</li>
+<li>[x] 🍀 支持<strong>流程图</strong>、<strong>甘特图</strong>、<strong>时序图</strong>、<strong>任务列表</strong>；</li>
+<li>[x] 🏁 支持粘贴 HTML 自动转换为 Markdown；</li>
+<li>[x] 💃🏻 支持插入原生 Emoji、设置常用表情列表；</li>
+<li>[x] 🚑 支持编辑内容保存<strong>本地存储</strong>，防止意外丢失；</li>
+<li>[x] 📝 支持<strong>实时预览</strong>，主窗口大小拖拽，字符计数；</li>
+<li>[x] 🛠 支持常用快捷键(<strong>Tab</strong>)，及代码块添加复制</li>
+<li>[x] ✨ 支持<strong>导出</strong>携带样式的 PDF、PNG、JPEG 等；</li>
+<li>[x] ✨ 升级 Vditor，新增对 <code>echarts</code> 图表的支持；</li>
+<li>[x] 👏 支持检查并格式化 Markdown 语法，使其专业；</li>
+<li>[x] 🦑 支持五线谱、及<a href="https://github.com/b3log/vditor/issues/117?utm_source=hacpai.com#issuecomment-526986052">部分站点、视频、音频解析</a>；</li>
+<li>[x] 🌟 增加对<strong>所见即所得</strong>编辑模式的支持(<code>⌘-⇧-M</code>)；</li>
+</ul>
+<hr>
+<h3>2. 书写一个质能守恒公式[^LaTeX]</h3>
+<p>$$
+E=mc^2
+$$</p>
+<hr>
+<h3>3. 高亮一段代码[^code]</h3>
+<pre><code class="language-js">// 给页面里所有的 DOM 元素添加一个 1px 的描边（outline）;
+[].forEach.call($$(&quot;*&quot;),function(a){
+  a.style.outline=&quot;1px solid #&quot;+(~~(Math.random()*(1&lt;&lt;24))).toString(16);
+})
+</code></pre>
+<h3>4. 高效绘制<a href="https://github.com/knsv/mermaid#flowchart">流程图</a></h3>
+<pre><code class="language-mermaid">graph TD;
+  A--&gt;B;
+  A--&gt;C;
+  B--&gt;D;
+  C--&gt;D;
+</code></pre>
+<h3>5. 高效绘制<a href="https://github.com/knsv/mermaid#sequence-diagram">序列图</a></h3>
+<pre><code class="language-mermaid">sequenceDiagram
+  participant Alice
+  participant Bob
+  Alice-&gt;John: Hello John, how are you?
+  loop Healthcheck
+      John-&gt;John: Fight against hypochondria
+  end
+  Note right of John: Rational thoughts &lt;br/&gt;prevail...
+  John--&gt;Alice: Great!
+  John-&gt;Bob: How about you?
+  Bob--&gt;John: Jolly good!
+</code></pre>
+<h3>6. 高效绘制<a href="https://github.com/knsv/mermaid#gantt-diagram">甘特图</a></h3>
+<blockquote>
+<p><strong>甘特图</strong>内在思想简单。基本是一条线条图，横轴表示时间，纵轴表示活动（项目），线条表示在整个期间上计划和实际的活动完成情况。它直观地表明任务计划在什么时候进行，及实际进展与计划要求的对比。</p>
+</blockquote>
+<pre><code class="language-mermaid">gantt
+  title 项目开发流程
+  section 项目确定
+    需求分析       :a1, 2019-06-22, 3d
+    可行性报告     :after a1, 5d
+    概念验证       : 5d
+  section 项目实施
+    概要设计      :2019-07-05  , 5d
+    详细设计      :2019-07-08, 10d
+    编码          :2019-07-15, 10d
+    测试          :2019-07-22, 5d
+  section 发布验收
+    发布: 2d
+    验收: 3d
+</code></pre>
+<h3>7. 支持图表</h3>
+<pre><code class="language-echarts">{
+  &quot;backgroundColor&quot;: &quot;#212121&quot;,
+  &quot;title&quot;: {
+    &quot;text&quot;: &quot;「晚晴幽草轩」访问来源&quot;,
+    &quot;subtext&quot;: &quot;2019 年 6 月份&quot;,
+    &quot;x&quot;: &quot;center&quot;,
+    &quot;textStyle&quot;: {
+      &quot;color&quot;: &quot;#f2f2f2&quot;
+    }
+  },
+  &quot;tooltip&quot;: {
+    &quot;trigger&quot;: &quot;item&quot;,
+    &quot;formatter&quot;: &quot;{a} &lt;br/&gt;{b} : {c} ({d}%)&quot;
+  },
+  &quot;legend&quot;: {
+    &quot;orient&quot;: &quot;vertical&quot;,
+    &quot;left&quot;: &quot;left&quot;,
+    &quot;data&quot;: [
+      &quot;搜索引擎&quot;,
+      &quot;直接访问&quot;,
+      &quot;推荐&quot;,
+      &quot;其他&quot;,
+      &quot;社交平台&quot;
+    ],
+    &quot;textStyle&quot;: {
+      &quot;color&quot;: &quot;#f2f2f2&quot;
+    }
+  },
+  &quot;series&quot;: [
+    {
+      &quot;name&quot;: &quot;访问来源&quot;,
+      &quot;type&quot;: &quot;pie&quot;,
+      &quot;radius&quot;: &quot;55%&quot;,
+      &quot;center&quot;: [
+        &quot;50%&quot;,
+        &quot;60%&quot;
+      ],
+      &quot;data&quot;: [
+        {
+          &quot;value&quot;: 10440,
+          &quot;name&quot;: &quot;搜索引擎&quot;,
+          &quot;itemStyle&quot;: {
+            &quot;color&quot;: &quot;#ef4136&quot;
+          }
+        },
+        {
+          &quot;value&quot;: 4770,
+          &quot;name&quot;: &quot;直接访问&quot;
+        },
+        {
+          &quot;value&quot;: 2430,
+          &quot;name&quot;: &quot;推荐&quot;
+        },
+        {
+          &quot;value&quot;: 342,
+          &quot;name&quot;: &quot;其他&quot;
+        },
+        {
+          &quot;value&quot;: 18,
+          &quot;name&quot;: &quot;社交平台&quot;
+        }
+      ],
+      &quot;itemStyle&quot;: {
+        &quot;emphasis&quot;: {
+          &quot;shadowBlur&quot;: 10,
+          &quot;shadowOffsetX&quot;: 0,
+          &quot;shadowColor&quot;: &quot;rgba(0, 0, 0, 0.5)&quot;
+        }
+      }
+    }
+  ]
+}
+</code></pre>
+<blockquote>
+<p><strong>备注</strong>：上述 echarts 图表📈，其数据，须使用严格的 <strong>JSON</strong> 格式；您可使用 JSON.stringify(data)，将对象传换从而得标准数据，即可正常使用。</p>
+</blockquote>
+<h3>8. 绘制表格</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">作品名称</th>
+<th style="text-align:left">在线地址</th>
+<th style="text-align:center">上线日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">倾城之链</td>
+<td style="text-align:left"><a href="https://nicelinks.site/??utm_source=markdown.lovejade.cn">https://nicelinks.site</a></td>
+<td style="text-align:center">2017-09-20</td>
+</tr>
+<tr>
+<td style="text-align:left">晚晴幽草轩</td>
+<td style="text-align:left"><a href="https://jeffjade.com/??utm_source=markdown.lovejade.cn">https://jeffjade.com</a></td>
+<td style="text-align:center">2014-09-20</td>
+</tr>
+<tr>
+<td style="text-align:left">静轩之别苑</td>
+<td style="text-align:left"><a href="http://quickapp.lovejade.cn/??utm_source=markdown.lovejade.cn">http://quickapp.lovejade.cn</a></td>
+<td style="text-align:center">2019-01-12</td>
+</tr>
+</tbody>
+</table>
+<h3>9. 更详细语法说明</h3>
+<p>想要查看更详细的语法说明，可以参考这份 <a href="https://github.com/nicejade/nice-front-end-tutorial/blob/master/tutorial/markdown-tutorial.md">Markdown 资源列表</a>，涵盖入门至进阶教程，以及资源、平台等信息，能让您对她有更深的认知。</p>
+<p>总而言之，不同于其它<em>所见即所得</em>的编辑器：你只需使用键盘专注于书写文本内容，就可以生成印刷级的排版格式，省却在键盘和工具栏之间来回切换，调整内容和格式的麻烦。<strong>Markdown 在流畅的书写和印刷级的阅读体验之间找到了平衡。</strong> 目前它已经成为世界上最大的技术分享网站 <code>GitHub</code> 和 技术问答网站 <code>StackOverFlow</code> 的御用书写格式，而且越发流行，正在在向各行业渗透。</p>
+<p>最新更新于 2019.08.21</p>
+<h1>欢迎使用 <code>Arya</code> 在线 Markdown 编辑器</h1>
+<p><a href="https://markdown.lovejade.cn/?utm_source=markdown.lovejade.cn">Arya</a>，是一款基于 <code>Vue</code>、<code>Vditor</code>，为未来而构建的在线 Markdown 编辑器；轻量且强大：内置粘贴 HTML 自动转换为 Markdown，支持流程图、甘特图、时序图、任务列表，可导出携带样式的图片、PDF、微信公众号特制的 HTML 等等。</p>
+<hr>
+<h2>如何使用</h2>
+<p><strong>微注</strong>：清空目前这份默认文档，即处于可使用态。<a href="https://markdown.lovejade.cn/?utm_source=markdown.lovejade.cn">Arya</a> 另一大优点在于：编辑内容只会在您本地进行保存，不会上传您的数据至服务器，<strong>绝不窥测用户个人隐私，可放心使用</strong>；Github 源码：<a href="https://github.com/nicejade/markdown-online-editor">markdown-online-editor</a>，部分功能仍在开发🚧，敬请期待。</p>
+<p>默认为<a href="https://hacpai.com/article/1577370404903?utm_source=github.com">所见即所得</a>模式，可通过 <code>⌘-⇧-M</code>（<code>Ctrl-⇧-M</code>）进行切换；或通过以下方式：</p>
+<ul>
+<li>所见即所得：<code>⌘-⌥-7</code>（<code>Ctrl-alt-7</code>）；</li>
+<li>即时渲染：<code>⌘-⌥-8</code>（<code>Ctrl-alt-8</code>）；</li>
+<li>分屏渲染：<code>⌘-⌥-9</code>（<code>Ctrl-alt-9</code>）；</li>
+</ul>
+<h3>PPT 预览</h3>
+<p>如果您用作 <code>PPT</code> 预览（入口在<code>设置</code>中），需要注意，这里暂还不能支持各种图表的渲染；您可以使用 <code>---</code> 来定义水平方向上幻灯片，用 <code>--</code> 来定义垂直幻灯片；更多设定可以参见 <a href="https://github.com/hakimel/reveal.js#table-of-contents">RevealJs 文档</a>。</p>
+<hr>
+<h2>什么是 Markdown</h2>
+<p><a href="https://nicelinks.site/tags/Markdown/?utm_source=markdown.lovejade.cn">Markdown</a> 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号，以最小的输入代价，生成极富表现力的文档：譬如您正在阅读的这份文档。它使用简单的符号标记不同的标题，分割不同的段落，<strong>粗体</strong>、<em>斜体</em> 或者<a href="https://vue-cli3.lovejade.cn/explore/">超文本链接</a>，更棒的是，它还可以：</p>
+<hr>
+<h3>1. 制作待办事宜 <code>Todo</code> 列表</h3>
+<ul>
+<li>[x] 🎉 通常 <code>Markdown</code> 解析器自带的基本功能；</li>
+<li>[x] 🍀 支持<strong>流程图</strong>、<strong>甘特图</strong>、<strong>时序图</strong>、<strong>任务列表</strong>；</li>
+<li>[x] 🏁 支持粘贴 HTML 自动转换为 Markdown；</li>
+<li>[x] 💃🏻 支持插入原生 Emoji、设置常用表情列表；</li>
+<li>[x] 🚑 支持编辑内容保存<strong>本地存储</strong>，防止意外丢失；</li>
+<li>[x] 📝 支持<strong>实时预览</strong>，主窗口大小拖拽，字符计数；</li>
+<li>[x] 🛠 支持常用快捷键(<strong>Tab</strong>)，及代码块添加复制</li>
+<li>[x] ✨ 支持<strong>导出</strong>携带样式的 PDF、PNG、JPEG 等；</li>
+<li>[x] ✨ 升级 Vditor，新增对 <code>echarts</code> 图表的支持；</li>
+<li>[x] 👏 支持检查并格式化 Markdown 语法，使其专业；</li>
+<li>[x] 🦑 支持五线谱、及<a href="https://github.com/b3log/vditor/issues/117?utm_source=hacpai.com#issuecomment-526986052">部分站点、视频、音频解析</a>；</li>
+<li>[x] 🌟 增加对<strong>所见即所得</strong>编辑模式的支持(<code>⌘-⇧-M</code>)；</li>
+</ul>
+<hr>
+<h3>2. 书写一个质能守恒公式[^LaTeX]</h3>
+<p>$$
+E=mc^2
+$$</p>
+<hr>
+<h3>3. 高亮一段代码[^code]</h3>
+<pre><code class="language-js">// 给页面里所有的 DOM 元素添加一个 1px 的描边（outline）;
+[].forEach.call($$(&quot;*&quot;),function(a){
+  a.style.outline=&quot;1px solid #&quot;+(~~(Math.random()*(1&lt;&lt;24))).toString(16);
+})
+</code></pre>
+<h3>4. 高效绘制<a href="https://github.com/knsv/mermaid#flowchart">流程图</a></h3>
+<pre><code class="language-mermaid">graph TD;
+  A--&gt;B;
+  A--&gt;C;
+  B--&gt;D;
+  C--&gt;D;
+</code></pre>
+<h3>5. 高效绘制<a href="https://github.com/knsv/mermaid#sequence-diagram">序列图</a></h3>
+<pre><code class="language-mermaid">sequenceDiagram
+  participant Alice
+  participant Bob
+  Alice-&gt;John: Hello John, how are you?
+  loop Healthcheck
+      John-&gt;John: Fight against hypochondria
+  end
+  Note right of John: Rational thoughts &lt;br/&gt;prevail...
+  John--&gt;Alice: Great!
+  John-&gt;Bob: How about you?
+  Bob--&gt;John: Jolly good!
+</code></pre>
+<h3>6. 高效绘制<a href="https://github.com/knsv/mermaid#gantt-diagram">甘特图</a></h3>
+<blockquote>
+<p><strong>甘特图</strong>内在思想简单。基本是一条线条图，横轴表示时间，纵轴表示活动（项目），线条表示在整个期间上计划和实际的活动完成情况。它直观地表明任务计划在什么时候进行，及实际进展与计划要求的对比。</p>
+</blockquote>
+<pre><code class="language-mermaid">gantt
+  title 项目开发流程
+  section 项目确定
+    需求分析       :a1, 2019-06-22, 3d
+    可行性报告     :after a1, 5d
+    概念验证       : 5d
+  section 项目实施
+    概要设计      :2019-07-05  , 5d
+    详细设计      :2019-07-08, 10d
+    编码          :2019-07-15, 10d
+    测试          :2019-07-22, 5d
+  section 发布验收
+    发布: 2d
+    验收: 3d
+</code></pre>
+<h3>7. 支持图表</h3>
+<pre><code class="language-echarts">{
+  &quot;backgroundColor&quot;: &quot;#212121&quot;,
+  &quot;title&quot;: {
+    &quot;text&quot;: &quot;「晚晴幽草轩」访问来源&quot;,
+    &quot;subtext&quot;: &quot;2019 年 6 月份&quot;,
+    &quot;x&quot;: &quot;center&quot;,
+    &quot;textStyle&quot;: {
+      &quot;color&quot;: &quot;#f2f2f2&quot;
+    }
+  },
+  &quot;tooltip&quot;: {
+    &quot;trigger&quot;: &quot;item&quot;,
+    &quot;formatter&quot;: &quot;{a} &lt;br/&gt;{b} : {c} ({d}%)&quot;
+  },
+  &quot;legend&quot;: {
+    &quot;orient&quot;: &quot;vertical&quot;,
+    &quot;left&quot;: &quot;left&quot;,
+    &quot;data&quot;: [
+      &quot;搜索引擎&quot;,
+      &quot;直接访问&quot;,
+      &quot;推荐&quot;,
+      &quot;其他&quot;,
+      &quot;社交平台&quot;
+    ],
+    &quot;textStyle&quot;: {
+      &quot;color&quot;: &quot;#f2f2f2&quot;
+    }
+  },
+  &quot;series&quot;: [
+    {
+      &quot;name&quot;: &quot;访问来源&quot;,
+      &quot;type&quot;: &quot;pie&quot;,
+      &quot;radius&quot;: &quot;55%&quot;,
+      &quot;center&quot;: [
+        &quot;50%&quot;,
+        &quot;60%&quot;
+      ],
+      &quot;data&quot;: [
+        {
+          &quot;value&quot;: 10440,
+          &quot;name&quot;: &quot;搜索引擎&quot;,
+          &quot;itemStyle&quot;: {
+            &quot;color&quot;: &quot;#ef4136&quot;
+          }
+        },
+        {
+          &quot;value&quot;: 4770,
+          &quot;name&quot;: &quot;直接访问&quot;
+        },
+        {
+          &quot;value&quot;: 2430,
+          &quot;name&quot;: &quot;推荐&quot;
+        },
+        {
+          &quot;value&quot;: 342,
+          &quot;name&quot;: &quot;其他&quot;
+        },
+        {
+          &quot;value&quot;: 18,
+          &quot;name&quot;: &quot;社交平台&quot;
+        }
+      ],
+      &quot;itemStyle&quot;: {
+        &quot;emphasis&quot;: {
+          &quot;shadowBlur&quot;: 10,
+          &quot;shadowOffsetX&quot;: 0,
+          &quot;shadowColor&quot;: &quot;rgba(0, 0, 0, 0.5)&quot;
+        }
+      }
+    }
+  ]
+}
+</code></pre>
+<blockquote>
+<p><strong>备注</strong>：上述 echarts 图表📈，其数据，须使用严格的 <strong>JSON</strong> 格式；您可使用 JSON.stringify(data)，将对象传换从而得标准数据，即可正常使用。</p>
+</blockquote>
+<h3>8. 绘制表格</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">作品名称</th>
+<th style="text-align:left">在线地址</th>
+<th style="text-align:center">上线日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">倾城之链</td>
+<td style="text-align:left"><a href="https://nicelinks.site/??utm_source=markdown.lovejade.cn">https://nicelinks.site</a></td>
+<td style="text-align:center">2017-09-20</td>
+</tr>
+<tr>
+<td style="text-align:left">晚晴幽草轩</td>
+<td style="text-align:left"><a href="https://jeffjade.com/??utm_source=markdown.lovejade.cn">https://jeffjade.com</a></td>
+<td style="text-align:center">2014-09-20</td>
+</tr>
+<tr>
+<td style="text-align:left">静轩之别苑</td>
+<td style="text-align:left"><a href="http://quickapp.lovejade.cn/??utm_source=markdown.lovejade.cn">http://quickapp.lovejade.cn</a></td>
+<td style="text-align:center">2019-01-12</td>
+</tr>
+</tbody>
+</table>
+<h3>9. 更详细语法说明</h3>
+<p>想要查看更详细的语法说明，可以参考这份 <a href="https://github.com/nicejade/nice-front-end-tutorial/blob/master/tutorial/markdown-tutorial.md">Markdown 资源列表</a>，涵盖入门至进阶教程，以及资源、平台等信息，能让您对她有更深的认知。</p>
+<p>总而言之，不同于其它<em>所见即所得</em>的编辑器：你只需使用键盘专注于书写文本内容，就可以生成印刷级的排版格式，省却在键盘和工具栏之间来回切换，调整内容和格式的麻烦。<strong>Markdown 在流畅的书写和印刷级的阅读体验之间找到了平衡。</strong> 目前它已经成为世界上最大的技术分享网站 <code>GitHub</code> 和 技术问答网站 <code>StackOverFlow</code> 的御用书写格式，而且越发流行，正在在向各行业渗透。</p>
+<p>最新更新于 2019.08.21</p>
+<h1>欢迎使用 <code>Arya</code> 在线 Markdown 编辑器</h1>
+<p><a href="https://markdown.lovejade.cn/?utm_source=markdown.lovejade.cn">Arya</a>，是一款基于 <code>Vue</code>、<code>Vditor</code>，为未来而构建的在线 Markdown 编辑器；轻量且强大：内置粘贴 HTML 自动转换为 Markdown，支持流程图、甘特图、时序图、任务列表，可导出携带样式的图片、PDF、微信公众号特制的 HTML 等等。</p>
+<hr>
+<h2>如何使用</h2>
+<p><strong>微注</strong>：清空目前这份默认文档，即处于可使用态。<a href="https://markdown.lovejade.cn/?utm_source=markdown.lovejade.cn">Arya</a> 另一大优点在于：编辑内容只会在您本地进行保存，不会上传您的数据至服务器，<strong>绝不窥测用户个人隐私，可放心使用</strong>；Github 源码：<a href="https://github.com/nicejade/markdown-online-editor">markdown-online-editor</a>，部分功能仍在开发🚧，敬请期待。</p>
+<p>默认为<a href="https://hacpai.com/article/1577370404903?utm_source=github.com">所见即所得</a>模式，可通过 <code>⌘-⇧-M</code>（<code>Ctrl-⇧-M</code>）进行切换；或通过以下方式：</p>
+<ul>
+<li>所见即所得：<code>⌘-⌥-7</code>（<code>Ctrl-alt-7</code>）；</li>
+<li>即时渲染：<code>⌘-⌥-8</code>（<code>Ctrl-alt-8</code>）；</li>
+<li>分屏渲染：<code>⌘-⌥-9</code>（<code>Ctrl-alt-9</code>）；</li>
+</ul>
+<h3>PPT 预览</h3>
+<p>如果您用作 <code>PPT</code> 预览（入口在<code>设置</code>中），需要注意，这里暂还不能支持各种图表的渲染；您可以使用 <code>---</code> 来定义水平方向上幻灯片，用 <code>--</code> 来定义垂直幻灯片；更多设定可以参见 <a href="https://github.com/hakimel/reveal.js#table-of-contents">RevealJs 文档</a>。</p>
+<hr>
+<h2>什么是 Markdown</h2>
+<p><a href="https://nicelinks.site/tags/Markdown/?utm_source=markdown.lovejade.cn">Markdown</a> 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号，以最小的输入代价，生成极富表现力的文档：譬如您正在阅读的这份文档。它使用简单的符号标记不同的标题，分割不同的段落，<strong>粗体</strong>、<em>斜体</em> 或者<a href="https://vue-cli3.lovejade.cn/explore/">超文本链接</a>，更棒的是，它还可以：</p>
+<hr>
+<h3>1. 制作待办事宜 <code>Todo</code> 列表</h3>
+<ul>
+<li>[x] 🎉 通常 <code>Markdown</code> 解析器自带的基本功能；</li>
+<li>[x] 🍀 支持<strong>流程图</strong>、<strong>甘特图</strong>、<strong>时序图</strong>、<strong>任务列表</strong>；</li>
+<li>[x] 🏁 支持粘贴 HTML 自动转换为 Markdown；</li>
+<li>[x] 💃🏻 支持插入原生 Emoji、设置常用表情列表；</li>
+<li>[x] 🚑 支持编辑内容保存<strong>本地存储</strong>，防止意外丢失；</li>
+<li>[x] 📝 支持<strong>实时预览</strong>，主窗口大小拖拽，字符计数；</li>
+<li>[x] 🛠 支持常用快捷键(<strong>Tab</strong>)，及代码块添加复制</li>
+<li>[x] ✨ 支持<strong>导出</strong>携带样式的 PDF、PNG、JPEG 等；</li>
+<li>[x] ✨ 升级 Vditor，新增对 <code>echarts</code> 图表的支持；</li>
+<li>[x] 👏 支持检查并格式化 Markdown 语法，使其专业；</li>
+<li>[x] 🦑 支持五线谱、及<a href="https://github.com/b3log/vditor/issues/117?utm_source=hacpai.com#issuecomment-526986052">部分站点、视频、音频解析</a>；</li>
+<li>[x] 🌟 增加对<strong>所见即所得</strong>编辑模式的支持(<code>⌘-⇧-M</code>)；</li>
+</ul>
+<hr>
+<h3>2. 书写一个质能守恒公式[^LaTeX]</h3>
+<p>$$
+E=mc^2
+$$</p>
+<hr>
+<h3>3. 高亮一段代码[^code]</h3>
+<pre><code class="language-js">// 给页面里所有的 DOM 元素添加一个 1px 的描边（outline）;
+[].forEach.call($$(&quot;*&quot;),function(a){
+  a.style.outline=&quot;1px solid #&quot;+(~~(Math.random()*(1&lt;&lt;24))).toString(16);
+})
+</code></pre>
+<h3>4. 高效绘制<a href="https://github.com/knsv/mermaid#flowchart">流程图</a></h3>
+<pre><code class="language-mermaid">graph TD;
+  A--&gt;B;
+  A--&gt;C;
+  B--&gt;D;
+  C--&gt;D;
+</code></pre>
+<h3>5. 高效绘制<a href="https://github.com/knsv/mermaid#sequence-diagram">序列图</a></h3>
+<pre><code class="language-mermaid">sequenceDiagram
+  participant Alice
+  participant Bob
+  Alice-&gt;John: Hello John, how are you?
+  loop Healthcheck
+      John-&gt;John: Fight against hypochondria
+  end
+  Note right of John: Rational thoughts &lt;br/&gt;prevail...
+  John--&gt;Alice: Great!
+  John-&gt;Bob: How about you?
+  Bob--&gt;John: Jolly good!
+</code></pre>
+<h3>6. 高效绘制<a href="https://github.com/knsv/mermaid#gantt-diagram">甘特图</a></h3>
+<blockquote>
+<p><strong>甘特图</strong>内在思想简单。基本是一条线条图，横轴表示时间，纵轴表示活动（项目），线条表示在整个期间上计划和实际的活动完成情况。它直观地表明任务计划在什么时候进行，及实际进展与计划要求的对比。</p>
+</blockquote>
+<pre><code class="language-mermaid">gantt
+  title 项目开发流程
+  section 项目确定
+    需求分析       :a1, 2019-06-22, 3d
+    可行性报告     :after a1, 5d
+    概念验证       : 5d
+  section 项目实施
+    概要设计      :2019-07-05  , 5d
+    详细设计      :2019-07-08, 10d
+    编码          :2019-07-15, 10d
+    测试          :2019-07-22, 5d
+  section 发布验收
+    发布: 2d
+    验收: 3d
+</code></pre>
+<h3>7. 支持图表</h3>
+<pre><code class="language-echarts">{
+  &quot;backgroundColor&quot;: &quot;#212121&quot;,
+  &quot;title&quot;: {
+    &quot;text&quot;: &quot;「晚晴幽草轩」访问来源&quot;,
+    &quot;subtext&quot;: &quot;2019 年 6 月份&quot;,
+    &quot;x&quot;: &quot;center&quot;,
+    &quot;textStyle&quot;: {
+      &quot;color&quot;: &quot;#f2f2f2&quot;
+    }
+  },
+  &quot;tooltip&quot;: {
+    &quot;trigger&quot;: &quot;item&quot;,
+    &quot;formatter&quot;: &quot;{a} &lt;br/&gt;{b} : {c} ({d}%)&quot;
+  },
+  &quot;legend&quot;: {
+    &quot;orient&quot;: &quot;vertical&quot;,
+    &quot;left&quot;: &quot;left&quot;,
+    &quot;data&quot;: [
+      &quot;搜索引擎&quot;,
+      &quot;直接访问&quot;,
+      &quot;推荐&quot;,
+      &quot;其他&quot;,
+      &quot;社交平台&quot;
+    ],
+    &quot;textStyle&quot;: {
+      &quot;color&quot;: &quot;#f2f2f2&quot;
+    }
+  },
+  &quot;series&quot;: [
+    {
+      &quot;name&quot;: &quot;访问来源&quot;,
+      &quot;type&quot;: &quot;pie&quot;,
+      &quot;radius&quot;: &quot;55%&quot;,
+      &quot;center&quot;: [
+        &quot;50%&quot;,
+        &quot;60%&quot;
+      ],
+      &quot;data&quot;: [
+        {
+          &quot;value&quot;: 10440,
+          &quot;name&quot;: &quot;搜索引擎&quot;,
+          &quot;itemStyle&quot;: {
+            &quot;color&quot;: &quot;#ef4136&quot;
+          }
+        },
+        {
+          &quot;value&quot;: 4770,
+          &quot;name&quot;: &quot;直接访问&quot;
+        },
+        {
+          &quot;value&quot;: 2430,
+          &quot;name&quot;: &quot;推荐&quot;
+        },
+        {
+          &quot;value&quot;: 342,
+          &quot;name&quot;: &quot;其他&quot;
+        },
+        {
+          &quot;value&quot;: 18,
+          &quot;name&quot;: &quot;社交平台&quot;
+        }
+      ],
+      &quot;itemStyle&quot;: {
+        &quot;emphasis&quot;: {
+          &quot;shadowBlur&quot;: 10,
+          &quot;shadowOffsetX&quot;: 0,
+          &quot;shadowColor&quot;: &quot;rgba(0, 0, 0, 0.5)&quot;
+        }
+      }
+    }
+  ]
+}
+</code></pre>
+<blockquote>
+<p><strong>备注</strong>：上述 echarts 图表📈，其数据，须使用严格的 <strong>JSON</strong> 格式；您可使用 JSON.stringify(data)，将对象传换从而得标准数据，即可正常使用。</p>
+</blockquote>
+<h3>8. 绘制表格</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">作品名称</th>
+<th style="text-align:left">在线地址</th>
+<th style="text-align:center">上线日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">倾城之链</td>
+<td style="text-align:left"><a href="https://nicelinks.site/??utm_source=markdown.lovejade.cn">https://nicelinks.site</a></td>
+<td style="text-align:center">2017-09-20</td>
+</tr>
+<tr>
+<td style="text-align:left">晚晴幽草轩</td>
+<td style="text-align:left"><a href="https://jeffjade.com/??utm_source=markdown.lovejade.cn">https://jeffjade.com</a></td>
+<td style="text-align:center">2014-09-20</td>
+</tr>
+<tr>
+<td style="text-align:left">静轩之别苑</td>
+<td style="text-align:left"><a href="http://quickapp.lovejade.cn/??utm_source=markdown.lovejade.cn">http://quickapp.lovejade.cn</a></td>
+<td style="text-align:center">2019-01-12</td>
+</tr>
+</tbody>
+</table>
+<h3>9. 更详细语法说明</h3>
+<p>想要查看更详细的语法说明，可以参考这份 <a href="https://github.com/nicejade/nice-front-end-tutorial/blob/master/tutorial/markdown-tutorial.md">Markdown 资源列表</a>，涵盖入门至进阶教程，以及资源、平台等信息，能让您对她有更深的认知。</p>
+<p>总而言之，不同于其它<em>所见即所得</em>的编辑器：你只需使用键盘专注于书写文本内容，就可以生成印刷级的排版格式，省却在键盘和工具栏之间来回切换，调整内容和格式的麻烦。<strong>Markdown 在流畅的书写和印刷级的阅读体验之间找到了平衡。</strong> 目前它已经成为世界上最大的技术分享网站 <code>GitHub</code> 和 技术问答网站 <code>StackOverFlow</code> 的御用书写格式，而且越发流行，正在在向各行业渗透。</p>
+<p>最新更新于 2019.08.21</p>
+<h1>欢迎使用 <code>Arya</code> 在线 Markdown 编辑器</h1>
+<p><a href="https://markdown.lovejade.cn/?utm_source=markdown.lovejade.cn">Arya</a>，是一款基于 <code>Vue</code>、<code>Vditor</code>，为未来而构建的在线 Markdown 编辑器；轻量且强大：内置粘贴 HTML 自动转换为 Markdown，支持流程图、甘特图、时序图、任务列表，可导出携带样式的图片、PDF、微信公众号特制的 HTML 等等。</p>
+<hr>
+<h2>如何使用</h2>
+<p><strong>微注</strong>：清空目前这份默认文档，即处于可使用态。<a href="https://markdown.lovejade.cn/?utm_source=markdown.lovejade.cn">Arya</a> 另一大优点在于：编辑内容只会在您本地进行保存，不会上传您的数据至服务器，<strong>绝不窥测用户个人隐私，可放心使用</strong>；Github 源码：<a href="https://github.com/nicejade/markdown-online-editor">markdown-online-editor</a>，部分功能仍在开发🚧，敬请期待。</p>
+<p>默认为<a href="https://hacpai.com/article/1577370404903?utm_source=github.com">所见即所得</a>模式，可通过 <code>⌘-⇧-M</code>（<code>Ctrl-⇧-M</code>）进行切换；或通过以下方式：</p>
+<ul>
+<li>所见即所得：<code>⌘-⌥-7</code>（<code>Ctrl-alt-7</code>）；</li>
+<li>即时渲染：<code>⌘-⌥-8</code>（<code>Ctrl-alt-8</code>）；</li>
+<li>分屏渲染：<code>⌘-⌥-9</code>（<code>Ctrl-alt-9</code>）；</li>
+</ul>
+<h3>PPT 预览</h3>
+<p>如果您用作 <code>PPT</code> 预览（入口在<code>设置</code>中），需要注意，这里暂还不能支持各种图表的渲染；您可以使用 <code>---</code> 来定义水平方向上幻灯片，用 <code>--</code> 来定义垂直幻灯片；更多设定可以参见 <a href="https://github.com/hakimel/reveal.js#table-of-contents">RevealJs 文档</a>。</p>
+<hr>
+<h2>什么是 Markdown</h2>
+<p><a href="https://nicelinks.site/tags/Markdown/?utm_source=markdown.lovejade.cn">Markdown</a> 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号，以最小的输入代价，生成极富表现力的文档：譬如您正在阅读的这份文档。它使用简单的符号标记不同的标题，分割不同的段落，<strong>粗体</strong>、<em>斜体</em> 或者<a href="https://vue-cli3.lovejade.cn/explore/">超文本链接</a>，更棒的是，它还可以：</p>
+<hr>
+<h3>1. 制作待办事宜 <code>Todo</code> 列表</h3>
+<ul>
+<li>[x] 🎉 通常 <code>Markdown</code> 解析器自带的基本功能；</li>
+<li>[x] 🍀 支持<strong>流程图</strong>、<strong>甘特图</strong>、<strong>时序图</strong>、<strong>任务列表</strong>；</li>
+<li>[x] 🏁 支持粘贴 HTML 自动转换为 Markdown；</li>
+<li>[x] 💃🏻 支持插入原生 Emoji、设置常用表情列表；</li>
+<li>[x] 🚑 支持编辑内容保存<strong>本地存储</strong>，防止意外丢失；</li>
+<li>[x] 📝 支持<strong>实时预览</strong>，主窗口大小拖拽，字符计数；</li>
+<li>[x] 🛠 支持常用快捷键(<strong>Tab</strong>)，及代码块添加复制</li>
+<li>[x] ✨ 支持<strong>导出</strong>携带样式的 PDF、PNG、JPEG 等；</li>
+<li>[x] ✨ 升级 Vditor，新增对 <code>echarts</code> 图表的支持；</li>
+<li>[x] 👏 支持检查并格式化 Markdown 语法，使其专业；</li>
+<li>[x] 🦑 支持五线谱、及<a href="https://github.com/b3log/vditor/issues/117?utm_source=hacpai.com#issuecomment-526986052">部分站点、视频、音频解析</a>；</li>
+<li>[x] 🌟 增加对<strong>所见即所得</strong>编辑模式的支持(<code>⌘-⇧-M</code>)；</li>
+</ul>
+<hr>
+<h3>2. 书写一个质能守恒公式[^LaTeX]</h3>
+<p>$$
+E=mc^2
+$$</p>
+<hr>
+<h3>3. 高亮一段代码[^code]</h3>
+<pre><code class="language-js">// 给页面里所有的 DOM 元素添加一个 1px 的描边（outline）;
+[].forEach.call($$(&quot;*&quot;),function(a){
+  a.style.outline=&quot;1px solid #&quot;+(~~(Math.random()*(1&lt;&lt;24))).toString(16);
+})
+</code></pre>
+<h3>4. 高效绘制<a href="https://github.com/knsv/mermaid#flowchart">流程图</a></h3>
+<pre><code class="language-mermaid">graph TD;
+  A--&gt;B;
+  A--&gt;C;
+  B--&gt;D;
+  C--&gt;D;
+</code></pre>
+<h3>5. 高效绘制<a href="https://github.com/knsv/mermaid#sequence-diagram">序列图</a></h3>
+<pre><code class="language-mermaid">sequenceDiagram
+  participant Alice
+  participant Bob
+  Alice-&gt;John: Hello John, how are you?
+  loop Healthcheck
+      John-&gt;John: Fight against hypochondria
+  end
+  Note right of John: Rational thoughts &lt;br/&gt;prevail...
+  John--&gt;Alice: Great!
+  John-&gt;Bob: How about you?
+  Bob--&gt;John: Jolly good!
+</code></pre>
+<h3>6. 高效绘制<a href="https://github.com/knsv/mermaid#gantt-diagram">甘特图</a></h3>
+<blockquote>
+<p><strong>甘特图</strong>内在思想简单。基本是一条线条图，横轴表示时间，纵轴表示活动（项目），线条表示在整个期间上计划和实际的活动完成情况。它直观地表明任务计划在什么时候进行，及实际进展与计划要求的对比。</p>
+</blockquote>
+<pre><code class="language-mermaid">gantt
+  title 项目开发流程
+  section 项目确定
+    需求分析       :a1, 2019-06-22, 3d
+    可行性报告     :after a1, 5d
+    概念验证       : 5d
+  section 项目实施
+    概要设计      :2019-07-05  , 5d
+    详细设计      :2019-07-08, 10d
+    编码          :2019-07-15, 10d
+    测试          :2019-07-22, 5d
+  section 发布验收
+    发布: 2d
+    验收: 3d
+</code></pre>
+<h3>7. 支持图表</h3>
+<pre><code class="language-echarts">{
+  &quot;backgroundColor&quot;: &quot;#212121&quot;,
+  &quot;title&quot;: {
+    &quot;text&quot;: &quot;「晚晴幽草轩」访问来源&quot;,
+    &quot;subtext&quot;: &quot;2019 年 6 月份&quot;,
+    &quot;x&quot;: &quot;center&quot;,
+    &quot;textStyle&quot;: {
+      &quot;color&quot;: &quot;#f2f2f2&quot;
+    }
+  },
+  &quot;tooltip&quot;: {
+    &quot;trigger&quot;: &quot;item&quot;,
+    &quot;formatter&quot;: &quot;{a} &lt;br/&gt;{b} : {c} ({d}%)&quot;
+  },
+  &quot;legend&quot;: {
+    &quot;orient&quot;: &quot;vertical&quot;,
+    &quot;left&quot;: &quot;left&quot;,
+    &quot;data&quot;: [
+      &quot;搜索引擎&quot;,
+      &quot;直接访问&quot;,
+      &quot;推荐&quot;,
+      &quot;其他&quot;,
+      &quot;社交平台&quot;
+    ],
+    &quot;textStyle&quot;: {
+      &quot;color&quot;: &quot;#f2f2f2&quot;
+    }
+  },
+  &quot;series&quot;: [
+    {
+      &quot;name&quot;: &quot;访问来源&quot;,
+      &quot;type&quot;: &quot;pie&quot;,
+      &quot;radius&quot;: &quot;55%&quot;,
+      &quot;center&quot;: [
+        &quot;50%&quot;,
+        &quot;60%&quot;
+      ],
+      &quot;data&quot;: [
+        {
+          &quot;value&quot;: 10440,
+          &quot;name&quot;: &quot;搜索引擎&quot;,
+          &quot;itemStyle&quot;: {
+            &quot;color&quot;: &quot;#ef4136&quot;
+          }
+        },
+        {
+          &quot;value&quot;: 4770,
+          &quot;name&quot;: &quot;直接访问&quot;
+        },
+        {
+          &quot;value&quot;: 2430,
+          &quot;name&quot;: &quot;推荐&quot;
+        },
+        {
+          &quot;value&quot;: 342,
+          &quot;name&quot;: &quot;其他&quot;
+        },
+        {
+          &quot;value&quot;: 18,
+          &quot;name&quot;: &quot;社交平台&quot;
+        }
+      ],
+      &quot;itemStyle&quot;: {
+        &quot;emphasis&quot;: {
+          &quot;shadowBlur&quot;: 10,
+          &quot;shadowOffsetX&quot;: 0,
+          &quot;shadowColor&quot;: &quot;rgba(0, 0, 0, 0.5)&quot;
+        }
+      }
+    }
+  ]
+}
+</code></pre>
+<blockquote>
+<p><strong>备注</strong>：上述 echarts 图表📈，其数据，须使用严格的 <strong>JSON</strong> 格式；您可使用 JSON.stringify(data)，将对象传换从而得标准数据，即可正常使用。</p>
+</blockquote>
+<h3>8. 绘制表格</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">作品名称</th>
+<th style="text-align:left">在线地址</th>
+<th style="text-align:center">上线日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">倾城之链</td>
+<td style="text-align:left"><a href="https://nicelinks.site/??utm_source=markdown.lovejade.cn">https://nicelinks.site</a></td>
+<td style="text-align:center">2017-09-20</td>
+</tr>
+<tr>
+<td style="text-align:left">晚晴幽草轩</td>
+<td style="text-align:left"><a href="https://jeffjade.com/??utm_source=markdown.lovejade.cn">https://jeffjade.com</a></td>
+<td style="text-align:center">2014-09-20</td>
+</tr>
+<tr>
+<td style="text-align:left">静轩之别苑</td>
+<td style="text-align:left"><a href="http://quickapp.lovejade.cn/??utm_source=markdown.lovejade.cn">http://quickapp.lovejade.cn</a></td>
+<td style="text-align:center">2019-01-12</td>
+</tr>
+</tbody>
+</table>
+<h3>9. 更详细语法说明</h3>
+<p>想要查看更详细的语法说明，可以参考这份 <a href="https://github.com/nicejade/nice-front-end-tutorial/blob/master/tutorial/markdown-tutorial.md">Markdown 资源列表</a>，涵盖入门至进阶教程，以及资源、平台等信息，能让您对她有更深的认知。</p>
+<p>总而言之，不同于其它<em>所见即所得</em>的编辑器：你只需使用键盘专注于书写文本内容，就可以生成印刷级的排版格式，省却在键盘和工具栏之间来回切换，调整内容和格式的麻烦。<strong>Markdown 在流畅的书写和印刷级的阅读体验之间找到了平衡。</strong> 目前它已经成为世界上最大的技术分享网站 <code>GitHub</code> 和 技术问答网站 <code>StackOverFlow</code> 的御用书写格式，而且越发流行，正在在向各行业渗透。</p>
+<p>最新更新于 2019.08.21</p>
+<h1>欢迎使用 <code>Arya</code> 在线 Markdown 编辑器</h1>
+<p><a href="https://markdown.lovejade.cn/?utm_source=markdown.lovejade.cn">Arya</a>，是一款基于 <code>Vue</code>、<code>Vditor</code>，为未来而构建的在线 Markdown 编辑器；轻量且强大：内置粘贴 HTML 自动转换为 Markdown，支持流程图、甘特图、时序图、任务列表，可导出携带样式的图片、PDF、微信公众号特制的 HTML 等等。</p>
+<hr>
+<h2>如何使用</h2>
+<p><strong>微注</strong>：清空目前这份默认文档，即处于可使用态。<a href="https://markdown.lovejade.cn/?utm_source=markdown.lovejade.cn">Arya</a> 另一大优点在于：编辑内容只会在您本地进行保存，不会上传您的数据至服务器，<strong>绝不窥测用户个人隐私，可放心使用</strong>；Github 源码：<a href="https://github.com/nicejade/markdown-online-editor">markdown-online-editor</a>，部分功能仍在开发🚧，敬请期待。</p>
+<p>默认为<a href="https://hacpai.com/article/1577370404903?utm_source=github.com">所见即所得</a>模式，可通过 <code>⌘-⇧-M</code>（<code>Ctrl-⇧-M</code>）进行切换；或通过以下方式：</p>
+<ul>
+<li>所见即所得：<code>⌘-⌥-7</code>（<code>Ctrl-alt-7</code>）；</li>
+<li>即时渲染：<code>⌘-⌥-8</code>（<code>Ctrl-alt-8</code>）；</li>
+<li>分屏渲染：<code>⌘-⌥-9</code>（<code>Ctrl-alt-9</code>）；</li>
+</ul>
+<h3>PPT 预览</h3>
+<p>如果您用作 <code>PPT</code> 预览（入口在<code>设置</code>中），需要注意，这里暂还不能支持各种图表的渲染；您可以使用 <code>---</code> 来定义水平方向上幻灯片，用 <code>--</code> 来定义垂直幻灯片；更多设定可以参见 <a href="https://github.com/hakimel/reveal.js#table-of-contents">RevealJs 文档</a>。</p>
+<hr>
+<h2>什么是 Markdown</h2>
+<p><a href="https://nicelinks.site/tags/Markdown/?utm_source=markdown.lovejade.cn">Markdown</a> 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号，以最小的输入代价，生成极富表现力的文档：譬如您正在阅读的这份文档。它使用简单的符号标记不同的标题，分割不同的段落，<strong>粗体</strong>、<em>斜体</em> 或者<a href="https://vue-cli3.lovejade.cn/explore/">超文本链接</a>，更棒的是，它还可以：</p>
+<hr>
+<h3>1. 制作待办事宜 <code>Todo</code> 列表</h3>
+<ul>
+<li>[x] 🎉 通常 <code>Markdown</code> 解析器自带的基本功能；</li>
+<li>[x] 🍀 支持<strong>流程图</strong>、<strong>甘特图</strong>、<strong>时序图</strong>、<strong>任务列表</strong>；</li>
+<li>[x] 🏁 支持粘贴 HTML 自动转换为 Markdown；</li>
+<li>[x] 💃🏻 支持插入原生 Emoji、设置常用表情列表；</li>
+<li>[x] 🚑 支持编辑内容保存<strong>本地存储</strong>，防止意外丢失；</li>
+<li>[x] 📝 支持<strong>实时预览</strong>，主窗口大小拖拽，字符计数；</li>
+<li>[x] 🛠 支持常用快捷键(<strong>Tab</strong>)，及代码块添加复制</li>
+<li>[x] ✨ 支持<strong>导出</strong>携带样式的 PDF、PNG、JPEG 等；</li>
+<li>[x] ✨ 升级 Vditor，新增对 <code>echarts</code> 图表的支持；</li>
+<li>[x] 👏 支持检查并格式化 Markdown 语法，使其专业；</li>
+<li>[x] 🦑 支持五线谱、及<a href="https://github.com/b3log/vditor/issues/117?utm_source=hacpai.com#issuecomment-526986052">部分站点、视频、音频解析</a>；</li>
+<li>[x] 🌟 增加对<strong>所见即所得</strong>编辑模式的支持(<code>⌘-⇧-M</code>)；</li>
+</ul>
+<hr>
+<h3>2. 书写一个质能守恒公式[^LaTeX]</h3>
+<p>$$
+E=mc^2
+$$</p>
+<hr>
+<h3>3. 高亮一段代码[^code]</h3>
+<pre><code class="language-js">// 给页面里所有的 DOM 元素添加一个 1px 的描边（outline）;
+[].forEach.call($$(&quot;*&quot;),function(a){
+  a.style.outline=&quot;1px solid #&quot;+(~~(Math.random()*(1&lt;&lt;24))).toString(16);
+})
+</code></pre>
+<h3>4. 高效绘制<a href="https://github.com/knsv/mermaid#flowchart">流程图</a></h3>
+<pre><code class="language-mermaid">graph TD;
+  A--&gt;B;
+  A--&gt;C;
+  B--&gt;D;
+  C--&gt;D;
+</code></pre>
+<h3>5. 高效绘制<a href="https://github.com/knsv/mermaid#sequence-diagram">序列图</a></h3>
+<pre><code class="language-mermaid">sequenceDiagram
+  participant Alice
+  participant Bob
+  Alice-&gt;John: Hello John, how are you?
+  loop Healthcheck
+      John-&gt;John: Fight against hypochondria
+  end
+  Note right of John: Rational thoughts &lt;br/&gt;prevail...
+  John--&gt;Alice: Great!
+  John-&gt;Bob: How about you?
+  Bob--&gt;John: Jolly good!
+</code></pre>
+<h3>6. 高效绘制<a href="https://github.com/knsv/mermaid#gantt-diagram">甘特图</a></h3>
+<blockquote>
+<p><strong>甘特图</strong>内在思想简单。基本是一条线条图，横轴表示时间，纵轴表示活动（项目），线条表示在整个期间上计划和实际的活动完成情况。它直观地表明任务计划在什么时候进行，及实际进展与计划要求的对比。</p>
+</blockquote>
+<pre><code class="language-mermaid">gantt
+  title 项目开发流程
+  section 项目确定
+    需求分析       :a1, 2019-06-22, 3d
+    可行性报告     :after a1, 5d
+    概念验证       : 5d
+  section 项目实施
+    概要设计      :2019-07-05  , 5d
+    详细设计      :2019-07-08, 10d
+    编码          :2019-07-15, 10d
+    测试          :2019-07-22, 5d
+  section 发布验收
+    发布: 2d
+    验收: 3d
+</code></pre>
+<h3>7. 支持图表</h3>
+<pre><code class="language-echarts">{
+  &quot;backgroundColor&quot;: &quot;#212121&quot;,
+  &quot;title&quot;: {
+    &quot;text&quot;: &quot;「晚晴幽草轩」访问来源&quot;,
+    &quot;subtext&quot;: &quot;2019 年 6 月份&quot;,
+    &quot;x&quot;: &quot;center&quot;,
+    &quot;textStyle&quot;: {
+      &quot;color&quot;: &quot;#f2f2f2&quot;
+    }
+  },
+  &quot;tooltip&quot;: {
+    &quot;trigger&quot;: &quot;item&quot;,
+    &quot;formatter&quot;: &quot;{a} &lt;br/&gt;{b} : {c} ({d}%)&quot;
+  },
+  &quot;legend&quot;: {
+    &quot;orient&quot;: &quot;vertical&quot;,
+    &quot;left&quot;: &quot;left&quot;,
+    &quot;data&quot;: [
+      &quot;搜索引擎&quot;,
+      &quot;直接访问&quot;,
+      &quot;推荐&quot;,
+      &quot;其他&quot;,
+      &quot;社交平台&quot;
+    ],
+    &quot;textStyle&quot;: {
+      &quot;color&quot;: &quot;#f2f2f2&quot;
+    }
+  },
+  &quot;series&quot;: [
+    {
+      &quot;name&quot;: &quot;访问来源&quot;,
+      &quot;type&quot;: &quot;pie&quot;,
+      &quot;radius&quot;: &quot;55%&quot;,
+      &quot;center&quot;: [
+        &quot;50%&quot;,
+        &quot;60%&quot;
+      ],
+      &quot;data&quot;: [
+        {
+          &quot;value&quot;: 10440,
+          &quot;name&quot;: &quot;搜索引擎&quot;,
+          &quot;itemStyle&quot;: {
+            &quot;color&quot;: &quot;#ef4136&quot;
+          }
+        },
+        {
+          &quot;value&quot;: 4770,
+          &quot;name&quot;: &quot;直接访问&quot;
+        },
+        {
+          &quot;value&quot;: 2430,
+          &quot;name&quot;: &quot;推荐&quot;
+        },
+        {
+          &quot;value&quot;: 342,
+          &quot;name&quot;: &quot;其他&quot;
+        },
+        {
+          &quot;value&quot;: 18,
+          &quot;name&quot;: &quot;社交平台&quot;
+        }
+      ],
+      &quot;itemStyle&quot;: {
+        &quot;emphasis&quot;: {
+          &quot;shadowBlur&quot;: 10,
+          &quot;shadowOffsetX&quot;: 0,
+          &quot;shadowColor&quot;: &quot;rgba(0, 0, 0, 0.5)&quot;
+        }
+      }
+    }
+  ]
+}
+</code></pre>
+<blockquote>
+<p><strong>备注</strong>：上述 echarts 图表📈，其数据，须使用严格的 <strong>JSON</strong> 格式；您可使用 JSON.stringify(data)，将对象传换从而得标准数据，即可正常使用。</p>
+</blockquote>
+<h3>8. 绘制表格</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">作品名称</th>
+<th style="text-align:left">在线地址</th>
+<th style="text-align:center">上线日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">倾城之链</td>
+<td style="text-align:left"><a href="https://nicelinks.site/??utm_source=markdown.lovejade.cn">https://nicelinks.site</a></td>
+<td style="text-align:center">2017-09-20</td>
+</tr>
+<tr>
+<td style="text-align:left">晚晴幽草轩</td>
+<td style="text-align:left"><a href="https://jeffjade.com/??utm_source=markdown.lovejade.cn">https://jeffjade.com</a></td>
+<td style="text-align:center">2014-09-20</td>
+</tr>
+<tr>
+<td style="text-align:left">静轩之别苑</td>
+<td style="text-align:left"><a href="http://quickapp.lovejade.cn/??utm_source=markdown.lovejade.cn">http://quickapp.lovejade.cn</a></td>
+<td style="text-align:center">2019-01-12</td>
+</tr>
+</tbody>
+</table>
+<h3>9. 更详细语法说明</h3>
+<p>想要查看更详细的语法说明，可以参考这份 <a href="https://github.com/nicejade/nice-front-end-tutorial/blob/master/tutorial/markdown-tutorial.md">Markdown 资源列表</a>，涵盖入门至进阶教程，以及资源、平台等信息，能让您对她有更深的认知。</p>
+<p>总而言之，不同于其它<em>所见即所得</em>的编辑器：你只需使用键盘专注于书写文本内容，就可以生成印刷级的排版格式，省却在键盘和工具栏之间来回切换，调整内容和格式的麻烦。<strong>Markdown 在流畅的书写和印刷级的阅读体验之间找到了平衡。</strong> 目前它已经成为世界上最大的技术分享网站 <code>GitHub</code> 和 技术问答网站 <code>StackOverFlow</code> 的御用书写格式，而且越发流行，正在在向各行业渗透。</p>
+<p>最新更新于 2019.08.21</p>
+<h1>欢迎使用 <code>Arya</code> 在线 Markdown 编辑器</h1>
+<p><a href="https://markdown.lovejade.cn/?utm_source=markdown.lovejade.cn">Arya</a>，是一款基于 <code>Vue</code>、<code>Vditor</code>，为未来而构建的在线 Markdown 编辑器；轻量且强大：内置粘贴 HTML 自动转换为 Markdown，支持流程图、甘特图、时序图、任务列表，可导出携带样式的图片、PDF、微信公众号特制的 HTML 等等。</p>
+<hr>
+<h2>如何使用</h2>
+<p><strong>微注</strong>：清空目前这份默认文档，即处于可使用态。<a href="https://markdown.lovejade.cn/?utm_source=markdown.lovejade.cn">Arya</a> 另一大优点在于：编辑内容只会在您本地进行保存，不会上传您的数据至服务器，<strong>绝不窥测用户个人隐私，可放心使用</strong>；Github 源码：<a href="https://github.com/nicejade/markdown-online-editor">markdown-online-editor</a>，部分功能仍在开发🚧，敬请期待。</p>
+<p>默认为<a href="https://hacpai.com/article/1577370404903?utm_source=github.com">所见即所得</a>模式，可通过 <code>⌘-⇧-M</code>（<code>Ctrl-⇧-M</code>）进行切换；或通过以下方式：</p>
+<ul>
+<li>所见即所得：<code>⌘-⌥-7</code>（<code>Ctrl-alt-7</code>）；</li>
+<li>即时渲染：<code>⌘-⌥-8</code>（<code>Ctrl-alt-8</code>）；</li>
+<li>分屏渲染：<code>⌘-⌥-9</code>（<code>Ctrl-alt-9</code>）；</li>
+</ul>
+<h3>PPT 预览</h3>
+<p>如果您用作 <code>PPT</code> 预览（入口在<code>设置</code>中），需要注意，这里暂还不能支持各种图表的渲染；您可以使用 <code>---</code> 来定义水平方向上幻灯片，用 <code>--</code> 来定义垂直幻灯片；更多设定可以参见 <a href="https://github.com/hakimel/reveal.js#table-of-contents">RevealJs 文档</a>。</p>
+<hr>
+<h2>什么是 Markdown</h2>
+<p><a href="https://nicelinks.site/tags/Markdown/?utm_source=markdown.lovejade.cn">Markdown</a> 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号，以最小的输入代价，生成极富表现力的文档：譬如您正在阅读的这份文档。它使用简单的符号标记不同的标题，分割不同的段落，<strong>粗体</strong>、<em>斜体</em> 或者<a href="https://vue-cli3.lovejade.cn/explore/">超文本链接</a>，更棒的是，它还可以：</p>
+<hr>
+<h3>1. 制作待办事宜 <code>Todo</code> 列表</h3>
+<ul>
+<li>[x] 🎉 通常 <code>Markdown</code> 解析器自带的基本功能；</li>
+<li>[x] 🍀 支持<strong>流程图</strong>、<strong>甘特图</strong>、<strong>时序图</strong>、<strong>任务列表</strong>；</li>
+<li>[x] 🏁 支持粘贴 HTML 自动转换为 Markdown；</li>
+<li>[x] 💃🏻 支持插入原生 Emoji、设置常用表情列表；</li>
+<li>[x] 🚑 支持编辑内容保存<strong>本地存储</strong>，防止意外丢失；</li>
+<li>[x] 📝 支持<strong>实时预览</strong>，主窗口大小拖拽，字符计数；</li>
+<li>[x] 🛠 支持常用快捷键(<strong>Tab</strong>)，及代码块添加复制</li>
+<li>[x] ✨ 支持<strong>导出</strong>携带样式的 PDF、PNG、JPEG 等；</li>
+<li>[x] ✨ 升级 Vditor，新增对 <code>echarts</code> 图表的支持；</li>
+<li>[x] 👏 支持检查并格式化 Markdown 语法，使其专业；</li>
+<li>[x] 🦑 支持五线谱、及<a href="https://github.com/b3log/vditor/issues/117?utm_source=hacpai.com#issuecomment-526986052">部分站点、视频、音频解析</a>；</li>
+<li>[x] 🌟 增加对<strong>所见即所得</strong>编辑模式的支持(<code>⌘-⇧-M</code>)；</li>
+</ul>
+<hr>
+<h3>2. 书写一个质能守恒公式[^LaTeX]</h3>
+<p>$$
+E=mc^2
+$$</p>
+<hr>
+<h3>3. 高亮一段代码[^code]</h3>
+<pre><code class="language-js">// 给页面里所有的 DOM 元素添加一个 1px 的描边（outline）;
+[].forEach.call($$(&quot;*&quot;),function(a){
+  a.style.outline=&quot;1px solid #&quot;+(~~(Math.random()*(1&lt;&lt;24))).toString(16);
+})
+</code></pre>
+<h3>4. 高效绘制<a href="https://github.com/knsv/mermaid#flowchart">流程图</a></h3>
+<pre><code class="language-mermaid">graph TD;
+  A--&gt;B;
+  A--&gt;C;
+  B--&gt;D;
+  C--&gt;D;
+</code></pre>
+<h3>5. 高效绘制<a href="https://github.com/knsv/mermaid#sequence-diagram">序列图</a></h3>
+<pre><code class="language-mermaid">sequenceDiagram
+  participant Alice
+  participant Bob
+  Alice-&gt;John: Hello John, how are you?
+  loop Healthcheck
+      John-&gt;John: Fight against hypochondria
+  end
+  Note right of John: Rational thoughts &lt;br/&gt;prevail...
+  John--&gt;Alice: Great!
+  John-&gt;Bob: How about you?
+  Bob--&gt;John: Jolly good!
+</code></pre>
+<h3>6. 高效绘制<a href="https://github.com/knsv/mermaid#gantt-diagram">甘特图</a></h3>
+<blockquote>
+<p><strong>甘特图</strong>内在思想简单。基本是一条线条图，横轴表示时间，纵轴表示活动（项目），线条表示在整个期间上计划和实际的活动完成情况。它直观地表明任务计划在什么时候进行，及实际进展与计划要求的对比。</p>
+</blockquote>
+<pre><code class="language-mermaid">gantt
+  title 项目开发流程
+  section 项目确定
+    需求分析       :a1, 2019-06-22, 3d
+    可行性报告     :after a1, 5d
+    概念验证       : 5d
+  section 项目实施
+    概要设计      :2019-07-05  , 5d
+    详细设计      :2019-07-08, 10d
+    编码          :2019-07-15, 10d
+    测试          :2019-07-22, 5d
+  section 发布验收
+    发布: 2d
+    验收: 3d
+</code></pre>
+<h3>7. 支持图表</h3>
+<pre><code class="language-echarts">{
+  &quot;backgroundColor&quot;: &quot;#212121&quot;,
+  &quot;title&quot;: {
+    &quot;text&quot;: &quot;「晚晴幽草轩」访问来源&quot;,
+    &quot;subtext&quot;: &quot;2019 年 6 月份&quot;,
+    &quot;x&quot;: &quot;center&quot;,
+    &quot;textStyle&quot;: {
+      &quot;color&quot;: &quot;#f2f2f2&quot;
+    }
+  },
+  &quot;tooltip&quot;: {
+    &quot;trigger&quot;: &quot;item&quot;,
+    &quot;formatter&quot;: &quot;{a} &lt;br/&gt;{b} : {c} ({d}%)&quot;
+  },
+  &quot;legend&quot;: {
+    &quot;orient&quot;: &quot;vertical&quot;,
+    &quot;left&quot;: &quot;left&quot;,
+    &quot;data&quot;: [
+      &quot;搜索引擎&quot;,
+      &quot;直接访问&quot;,
+      &quot;推荐&quot;,
+      &quot;其他&quot;,
+      &quot;社交平台&quot;
+    ],
+    &quot;textStyle&quot;: {
+      &quot;color&quot;: &quot;#f2f2f2&quot;
+    }
+  },
+  &quot;series&quot;: [
+    {
+      &quot;name&quot;: &quot;访问来源&quot;,
+      &quot;type&quot;: &quot;pie&quot;,
+      &quot;radius&quot;: &quot;55%&quot;,
+      &quot;center&quot;: [
+        &quot;50%&quot;,
+        &quot;60%&quot;
+      ],
+      &quot;data&quot;: [
+        {
+          &quot;value&quot;: 10440,
+          &quot;name&quot;: &quot;搜索引擎&quot;,
+          &quot;itemStyle&quot;: {
+            &quot;color&quot;: &quot;#ef4136&quot;
+          }
+        },
+        {
+          &quot;value&quot;: 4770,
+          &quot;name&quot;: &quot;直接访问&quot;
+        },
+        {
+          &quot;value&quot;: 2430,
+          &quot;name&quot;: &quot;推荐&quot;
+        },
+        {
+          &quot;value&quot;: 342,
+          &quot;name&quot;: &quot;其他&quot;
+        },
+        {
+          &quot;value&quot;: 18,
+          &quot;name&quot;: &quot;社交平台&quot;
+        }
+      ],
+      &quot;itemStyle&quot;: {
+        &quot;emphasis&quot;: {
+          &quot;shadowBlur&quot;: 10,
+          &quot;shadowOffsetX&quot;: 0,
+          &quot;shadowColor&quot;: &quot;rgba(0, 0, 0, 0.5)&quot;
+        }
+      }
+    }
+  ]
+}
+</code></pre>
+<blockquote>
+<p><strong>备注</strong>：上述 echarts 图表📈，其数据，须使用严格的 <strong>JSON</strong> 格式；您可使用 JSON.stringify(data)，将对象传换从而得标准数据，即可正常使用。</p>
+</blockquote>
+<h3>8. 绘制表格</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">作品名称</th>
+<th style="text-align:left">在线地址</th>
+<th style="text-align:center">上线日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">倾城之链</td>
+<td style="text-align:left"><a href="https://nicelinks.site/??utm_source=markdown.lovejade.cn">https://nicelinks.site</a></td>
+<td style="text-align:center">2017-09-20</td>
+</tr>
+<tr>
+<td style="text-align:left">晚晴幽草轩</td>
+<td style="text-align:left"><a href="https://jeffjade.com/??utm_source=markdown.lovejade.cn">https://jeffjade.com</a></td>
+<td style="text-align:center">2014-09-20</td>
+</tr>
+<tr>
+<td style="text-align:left">静轩之别苑</td>
+<td style="text-align:left"><a href="http://quickapp.lovejade.cn/??utm_source=markdown.lovejade.cn">http://quickapp.lovejade.cn</a></td>
+<td style="text-align:center">2019-01-12</td>
+</tr>
+</tbody>
+</table>
+<h3>9. 更详细语法说明</h3>
+<p>想要查看更详细的语法说明，可以参考这份 <a href="https://github.com/nicejade/nice-front-end-tutorial/blob/master/tutorial/markdown-tutorial.md">Markdown 资源列表</a>，涵盖入门至进阶教程，以及资源、平台等信息，能让您对她有更深的认知。</p>
+<p>总而言之，不同于其它<em>所见即所得</em>的编辑器：你只需使用键盘专注于书写文本内容，就可以生成印刷级的排版格式，省却在键盘和工具栏之间来回切换，调整内容和格式的麻烦。<strong>Markdown 在流畅的书写和印刷级的阅读体验之间找到了平衡。</strong> 目前它已经成为世界上最大的技术分享网站 <code>GitHub</code> 和 技术问答网站 <code>StackOverFlow</code> 的御用书写格式，而且越发流行，正在在向各行业渗透。</p>
+<p>最新更新于 2019.08.21</p>

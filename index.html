@@ -17,78 +17,6 @@
   const md = window.markdownit();
   const h3 = document.querySelector('h3')
 
-
-  let htmlString = '';
-  let tagStack = [];
-
-  function processHtmlString(newData) {
-    htmlString += newData;
-
-    for (let i = 0; i < newData.length; i++) {
-      let char = newData[i];
-
-      if (tagStack.length > 0) {
-        // 处理正在解析的标签
-        let tag = tagStack[tagStack.length - 1];
-
-        if (tag.inQuotedString) {
-          // 在引号中，直接添加字符
-          tag.content += char;
-        } else if (char === '>') {
-          // 当前标签结束了
-          tagStack.pop();
-        } else {
-          tag.content += char;
-        }
-      } else if (char === '<') {
-        // 开始解析新标签
-        let nextChar = htmlString[i + 1];
-
-        if (nextChar === '/') {
-          // 解析结束标记
-          let endIndex = htmlString.indexOf('>', i);
-
-          if (endIndex !== -1) {
-            let tagName = htmlString.substring(i + 2, endIndex);
-            i = endIndex;
-          } else {
-            // 结束标记未完全返回，继续等待下一次数据
-            break;
-          }
-        } else if (nextChar !== '!') {
-          // 解析开始标记
-          let spaceIndex = htmlString.indexOf(' ', i);
-          let endIndex = htmlString.indexOf('>', i);
-
-          let tagName;
-          if (spaceIndex !== -1 && spaceIndex < endIndex) {
-            // 存在空格，标记可能包含属性
-            tagName = htmlString.substring(i + 1, spaceIndex);
-          } else {
-            tagName = htmlString.substring(i + 1, endIndex);
-          }
-
-          // 创建新的标签对象，并将其入栈
-          tagStack.push({ name: tagName, content: '', inQuotedString: false });
-          i = endIndex;
-        }
-      } else if (tagStack.length > 0 && (char === '"' || char === "'")) {
-        // 引号开始或结束了
-        let tag = tagStack[tagStack.length - 1];
-
-        if (!tag.inQuotedString || tag.quoteChar === char) {
-          tag.inQuotedString = !tag.inQuotedString;
-          tag.quoteChar = char;
-        }
-      }
-    }
-
-    // 清空htmlString，以便下次接收新数据
-    htmlString = '';
-  }
-
-
-
   const fff = () => {
     const textDecoder = new TextDecoder();
     fetch('http://127.0.0.1:3002').then(res => {
@@ -115,17 +43,7 @@
             // 将解码后的文本逐个字符地添加到容器中
             for (let i = 0; i < decodedValue.length; i++) {
               requestIdleCallback(() => {
-                processHtmlString(decodedValue)
-                // if (tag.end) {
-                //   h3.textContent = h3.textContent.slice(tag.startIndex, tag.endIndex)
-                //   const template = document.createElement('template')
-                //   template.innerHTML = tag.value
-                //   while (template.content.firstChild) {
-                //     h3.appendChild(template.content.firstChild)
-                //   }
-                // } else {
-                //   h3.appendChild(document.createTextNode(value))
-                // }
+                h3.appendChild(document.createTextNode(decodedValue[i]))
               });
             }
 
