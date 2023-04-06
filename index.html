@@ -31,6 +31,7 @@
     // 状态机
     const state = {
       value: '',
+      htmlStrList: [],
       tagList: []
     }
     window.state = state
@@ -55,11 +56,11 @@
               h3.appendChild(document.createTextNode(v));
               state.value += v;
               // 判断闭合标签
+
               const reg = /<\/(\w+)>/g;
               let match = reg.exec(state.value);
-              if (match[1] === 'a') { debugger }
-              while (match) {
-                handleTextContent(match);
+              while (match || isSingleClosureTag()) {
+                handleTextContent(match, match ? false : isSingleClosureTag());
                 match = reg.exec(state.value);
               }
             }
@@ -72,19 +73,57 @@
       });
     })
 
-    function handleTextContent(match) {
-      if (!match) return
-      state.tagList.push(match.input)
-      const lIndex = h3.textContent.lastIndexOf(`<${match[1]}`)
-      const rIndex = h3.textContent.length
+    function isSingleClosureTag(match) {
+      return match ? false : state.value.includes('<br>' || '<hr>')
+    }
 
-      const htmlString = h3.textContent.slice(lIndex, rIndex)
+    function handleSingleClosureTag() {
       const template = document.createElement('template')
       template.innerHTML = htmlString
-      for (let index = lIndex; index < rIndex; index++) {
-        h3.childNodes[lIndex]?.remove?.()
+      h3.appendChild(template.content)
+      state.value = ''
+    }
+
+    function handleTextContent(match, isSingleClosureTag = false) {
+      if (!match && !isSingleClosureTag) return
+
+      let lIndex = 0;
+
+      if (isSingleClosureTag) {
+        lIndex = h3.textContent.lastIndexOf(state.value)
+      } else {
+        lIndex = h3.textContent.lastIndexOf(`<${match[1]}`)
+      }
+
+      const htmlString = h3.textContent.slice(lIndex)
+      const template = document.createElement('template')
+      template.innerHTML = htmlString
+
+      state.htmlStrList.push(htmlString)
+
+      let elementContent = ''
+      for (let i = h3.childNodes.length - 1; i >= 0; i--) {
+        if (elementContent === htmlString) {
+          break
+        }
+
+        const node = h3.childNodes[i]
+        if (node.nodeType === 3) {
+          elementContent = node.textContent + elementContent
+        } else {
+          state.tagList.push({
+            node,
+            value: node.textContent
+          })
+        }
+        h3.removeChild(node)
+      }
+      while (state.tagList.length) {
+        const { node, value } = state.tagList.shift()
+        template.innerHTML = template.innerHTML.replace(value, node.outerHTML)
       }
       h3.appendChild(template.content)
+
       state.value = ''
     }
   }
