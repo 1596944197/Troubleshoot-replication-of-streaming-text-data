@@ -14,13 +14,29 @@
   <h3></h3>
 </body>
 <script>
+  // 模拟操作->替换
+  // v1.0 not
+  // h3.innerHTML += textDecoder.decode(value)
+  // v2.0 not
+  // h3.innerText += textDecoder.decode(value)
+  // v3.0 work but not good
+  // const text = document.createTextNode(textDecoder.decode(value))
+  // h3.appendChild(text)
+  // v4.0 try markdown
   const md = window.markdownit();
   const h3 = document.querySelector('h3')
 
   const fff = () => {
     const textDecoder = new TextDecoder();
+    // 状态机
+    const state = {
+      value: '',
+      tagList: []
+    }
+    window.state = state
     fetch('http://127.0.0.1:3002').then(res => {
       const reader = res.body.getReader()
+      let decodedValue = ''
       new ReadableStream({
         start(controller) {
           async function push() {
@@ -30,55 +46,47 @@
               return;
             }
 
-            // 模拟操作->替换
-            // v1.0 not
-            // h3.innerHTML += textDecoder.decode(value)
-            // v2.0 not
-            // h3.innerText += textDecoder.decode(value)
-            // v3.0 work but not good
-            // const text = document.createTextNode(textDecoder.decode(value))
-            // h3.appendChild(text)
-            // v4.0 try markdown
             const decodedValue = md.render(textDecoder.decode(value));
 
-            // 状态机
-            const state = {
-              tagList: [],
-              value: ''
-            }
-            window.state = state
 
             // 将解码后的文本逐个字符地添加到容器中
             for (let i = 0; i < decodedValue.length; i++) {
-              requestIdleCallback(() => {
-                h3.appendChild(document.createTextNode(decodedValue[i]))
-                state.value += decodedValue[i]
-                // 判断标签
-                const match = /<\/(\w+)>/g.exec(state.value)
-                // 表示已匹配到元素的结束标签
-                if (match?.[0]) {
-                  const lIndex = h3.textContent.lastIndexOf(`<${match[1]}`)
-                  const rIndex = h3.textContent.length
-
-                  const htmlString = h3.textContent.slice(lIndex, rIndex)
-                  const template = document.createElement('template')
-                  template.innerHTML = htmlString
-                  for (let index = lIndex; index <= rIndex; index++) {
-                    h3.childNodes[lIndex]?.remove?.()
-                  }
-                  h3.appendChild(template.content)
-                  debugger
-                }
-              });
+              const v = decodedValue[i];
+              h3.appendChild(document.createTextNode(v));
+              state.value += v;
+              // 判断闭合标签
+              const reg = /<\/(\w+)>/g;
+              let match = reg.exec(state.value);
+              if (match[1] === 'a') { debugger }
+              while (match) {
+                handleTextContent(match);
+                match = reg.exec(state.value);
+              }
             }
 
             // 延时并再次调用push方法，实现延迟加载
             requestIdleCallback(push)
           }
-          requestIdleCallback(push)
+          push()
         }
       });
     })
+
+    function handleTextContent(match) {
+      if (!match) return
+      state.tagList.push(match.input)
+      const lIndex = h3.textContent.lastIndexOf(`<${match[1]}`)
+      const rIndex = h3.textContent.length
+
+      const htmlString = h3.textContent.slice(lIndex, rIndex)
+      const template = document.createElement('template')
+      template.innerHTML = htmlString
+      for (let index = lIndex; index < rIndex; index++) {
+        h3.childNodes[lIndex]?.remove?.()
+      }
+      h3.appendChild(template.content)
+      state.value = ''
+    }
   }
 </script>
 
